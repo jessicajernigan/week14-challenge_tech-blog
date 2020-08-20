@@ -56,7 +56,7 @@ Blogger.init(
     timestamps: false, // Don't automatically create createdAt/updatedAt timestamp fields.
     freezeTableName: true, // Don't pluralize name of database table.
     underscored: true, // Use underscores instead of camel-casing (i.e. `comment_text` and not `commentText`)
-    modelName: 'Blogger' // Ensure model name remains lowercase in the database.
+    modelName: 'blogger' // Ensure model name remains lowercase in the database.
   }
 );
 
