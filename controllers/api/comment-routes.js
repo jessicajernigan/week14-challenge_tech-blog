@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   // check the session to verify user is logged in
-  if (req.session) {
+  // if (req.session) {
     Comment.create({
       comment_text: req.body.comment_text,
       blogpost_id: req.body.blogpost_id,
@@ -29,7 +29,7 @@ router.post('/', (req, res) => {
         console.log(err);
         res.status(400).json(err);
       });
-  }
+  // }
 });
 
 router.delete('/:id', (req, res) => {

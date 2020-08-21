@@ -81,6 +81,7 @@ router.get('/:id', (req, res) => {
 });
 
 
+
 // Create a post
 router.post('/', (req, res) => {
   Blogpost.create({

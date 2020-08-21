@@ -17,6 +17,7 @@ Blogger.hasMany(Comment, {
 Blogpost.belongsTo(Blogger, {
   foreignKey: 'blogger_id',
 });
+
 Blogpost.hasMany(Comment, {
   foreignKey: 'blogpost_id'
 });
@@ -30,10 +31,6 @@ Comment.belongsTo(Blogger, {
 Comment.belongsTo(Blogpost, {
   foreignKey: 'blogpost_id'
 });
-
-
-
-
 
 
 module.exports = { Blogger, Blogpost, Comment };
