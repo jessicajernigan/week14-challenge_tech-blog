@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
 const { Blogpost, Blogger } = require('../../models');
-// const withAuth = require('../../utils/auth');
+const withAuth = require('../../utils/auth');
 
 
 // GET posts by all users
@@ -15,21 +15,21 @@ router.get('/', (req, res) => {
       'post_content',
       'created_at'
     ],
-    // include: [
-    //   // include the Comment model here:
-    //   {
-    //     model: Comment,
-    //     attributes: ['id', 'comment_text', 'post_id', 'blogger_id', 'created_at'],
-    //     include: {
-    //       model: Blogger,
-    //       attributes: ['username']
-    //     }
-    //   },
-    //   {
-    //     model: Blogger,
-    //     attributes: ['username']
-    //   }
-    // ]
+    include: [
+      // include the Comment model here:
+      {
+        model: Comment,
+        attributes: ['id', 'comment_text', 'blogpost_id', 'blogger_id', 'created_at'],
+        include: {
+          model: Blogger,
+          attributes: ['username']
+        }
+      },
+      {
+        model: Blogger,
+        attributes: ['username']
+      }
+    ]
   })
     .then(dbPostData => res.json(dbPostData))
     .catch(err => {

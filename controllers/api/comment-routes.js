@@ -1,11 +1,15 @@
 const router = require('express').Router();
 const { Comment } = require('../../models');
-// const withAuth = require('../../utils/auth');
+const withAuth = require('../../utils/auth');
 
 
 router.get('/', (req, res) => {
   Comment.findAll({
-    attributes: ['id', 'comment_text', 'blogger_id', 'blogpost_id']
+    attributes: [
+      'id', 
+      'comment_text', 
+      'blogger_id', 
+      'blogpost_id']
   })
     .then((commentData) => res.json(commentData))
     .catch((err) => {
@@ -18,7 +22,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   // check the session to verify user is logged in
-  // if (req.session) {
+  if (req.session) {
     Comment.create({
       comment_text: req.body.comment_text,
       blogpost_id: req.body.blogpost_id,
@@ -29,7 +33,7 @@ router.post('/', (req, res) => {
         console.log(err);
         res.status(400).json(err);
       });
-  // }
+  }
 });
 
 router.delete('/:id', (req, res) => {
