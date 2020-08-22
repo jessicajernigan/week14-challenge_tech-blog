@@ -19,11 +19,11 @@ Blogpost.init(
       allowNull: false
     },
     post_content: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT("long"),
       allowNull: false,
-      validate: {
-        len: [10, 400]
-      }
+      // validate: {
+      //   len: [10]
+      // }
     },
     blogger_id: {
       type: DataTypes.INTEGER,

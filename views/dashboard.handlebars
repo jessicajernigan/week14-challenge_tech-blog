@@ -1,15 +1,14 @@
-
- <div class="flexbox">
- <section class="container">
-    <h2>What's on your mind?</h2>
+<div class="flexbox">
+  <section class="container newpost">
+    <h2 class="heading">What's on your mind?</h2>
     <form class="new-post-form">
       <div>
         <label for="post-title">Title</label>
-        <input type="text" id="post-title" name="post-title" />
+        <input type="text" id="post-title" name="post-title" placeholder="e.g. A Snappy Title" />
       </div>
       <div>
-        <label for="post-content">Content</label>
-        <input id="post-content" name="post-content" />
+        <label for="post-content">Body</label>
+        <textarea id="post-content" name="post-content" class="large-input" rows="4" placeholder="e.g. Let me tell you about..." /></textarea>
       </div>
       <button type="submit" class="btn">Create</button>
     </form>
