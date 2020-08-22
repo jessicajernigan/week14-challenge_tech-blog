@@ -1,33 +1,39 @@
 {{!-- Can't reuse the post-info partial here, because the title is an editable form field --}}
-<article>
-  <a href="/dashboard"> &larr; Back to dashboard</a>
-  <h2>
-    Edit Post
-  </h2>
-  <form class="-form">
-    <div>
-      <input name="post-title" type="text" value="{{post.title}}" />
-    </div>
-    <div>
-      <a href="/blogpost/{{post.id}}">{{post.comments.length}} {{format_plural "comment" post.comments.length}}</a>
-    </div>
-    <button type="submit">Save post</button>
-    <button type="button" class="delete-post-btn">Delete post</button>
-  </form>
-</article>
+<div class="flexbox">
+  <article class="container">
+    <a href="/dashboard"> &larr; Back to dashboard</a>
+    <h2>
+      Edit Post
+    </h2>
+    <form class="-form">
+      <div>
+        <input name="post-title" type="text" value="{{post.title}}" />
+      </div>
+      <div>
+        <a href="/blogpost/{{post.id}}">{{post.comments.length}} {{format_plural "comment" post.comments.length}}</a>
+      </div>
+      <button type="submit">Save post</button>
+      <button type="button" class="delete-post-btn">Delete post</button>
+    </form>
+  </article>
+</div>
 
 
 
 {{!-- Form for adding new comments and then list the post's current comments underneath --}}
-<form class="comment-form">
-  <div>
-    <textarea name="comment-body"></textarea>
-  </div>
+<div class="flexbox">
+  <article class="container">
+    <form class="comment-form">
+      <div>
+        <textarea name="comment-body"></textarea>
+      </div>
 
-  <div>
-    <button type="submit">add comment</button>
-  </div>
-</form>
+      <div>
+        <button type="submit">add comment</button>
+      </div>
+    </form>
+  </article>
+</div>
 
 {{> comments post.comments}}
 
