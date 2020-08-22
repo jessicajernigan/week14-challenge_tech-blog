@@ -1,6 +1,6 @@
 {{!-- Can't reuse the  partial here, because the title is an editable form field --}}
 <div class="flexcolumn">
-  <article class="edit-container">
+  <article class="edit-new">
     <a href="/dashboard"> &larr; Back to dashboard</a>
     <h2>
       Edit Post
@@ -11,7 +11,7 @@
       </div>
       <div>
         {{!-- <input name="post-content" type="text" value="{{post.post_content}}" /> --}}
-        <textarea name="post-content" type="text" >{{post.post_content}}</textarea>
+        <textarea name="post-content" type="text">{{post.post_content}}</textarea>
       </div>
       <div>
         <a href="/blogpost/{{post.id}}">{{post.comments.length}}
@@ -22,22 +22,10 @@
       <button type="button" class="delete-post-btn">Delete post</button>
     </form>
   </article>
+  {{> comments post.comments}}
+</div>
 
-  {{!-- Form for adding new comments and then list the post's current comments underneath --}}
-  {{!-- <article class="comment-container">
-    <form class="comment-form">
-      <div>
-        <textarea name="comment-body"></textarea>
-      </div>
 
-      <div>
-        <button type="submit">add comment</button>
-      </div>
-    </form>
-  </article> --}}
-</div> 
-
-{{> comments post.comments}}
 
 
 <script src="/javascript/edit-blog-post.js"></script>
