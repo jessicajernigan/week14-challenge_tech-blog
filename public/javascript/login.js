@@ -5,9 +5,9 @@ async function signupFormHandler(event) {
 	const email = document.querySelector('#email-signup').value.trim();
 	const password = document.querySelector('#password-signup').value.trim();
 
-	// if all signup fields are filled out, make POST request to api/users route to create new user
+	// if all signup fields are filled out, make POST request to api route to create new user
 	if (username && email && password) {
-		const response = await fetch('/api/users', {
+		const response = await fetch('/api/bloggers', {
 			method: 'post',
 			body: JSON.stringify({
 				username,
@@ -35,7 +35,7 @@ async function loginFormHandler(event) {
 	const password = document.querySelector('#password-login').value.trim();
 
 	if (email && password) {
-		const response = await fetch('/api/users/login', {
+		const response = await fetch('/api/bloggers/login', {
 			method: 'post',
 			body: JSON.stringify({
 				email,

@@ -7,7 +7,7 @@ async function editFormHandler(event) {
 
   const title = document.querySelector('input[name="post-title"]').value;
 
-  const response = await fetch(`/api/posts/${id}`, {
+  const response = await fetch(`/api/blogposts/${id}`, {
     method: 'PUT',
     body: JSON.stringify({
       title

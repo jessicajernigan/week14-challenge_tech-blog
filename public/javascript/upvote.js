@@ -7,8 +7,8 @@ async function upvoteClickHandler(event) {
   ];
   // console.log(id);
 
-  // controllers/api/post-routes
-  const response = await fetch('/api/posts/upvote', {
+  // controllers/api/blogpost-routes
+  const response = await fetch('/api/blogposts/upvote', {
     method: 'PUT',
     body: JSON.stringify({
       post_id: id

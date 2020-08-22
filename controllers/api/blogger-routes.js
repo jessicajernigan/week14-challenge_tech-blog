@@ -75,7 +75,7 @@ router.post('/', (req, res) => {
 
 
 
-// PUT /api/users/1
+// PUT /api/bloggers/1
 router.put('/:id', userAuth, (req, res) => {
 	Blogger.update(req.body, {
 		individualHooks: true,

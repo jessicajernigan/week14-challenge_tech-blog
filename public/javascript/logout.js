@@ -1,7 +1,7 @@
 
 async function logout() {
   // make POST request so backend has access to session variables...ie loggedIn boolean
-  const response = await fetch('/api/users/logout', {
+  const response = await fetch('/api/bloggers/logout', {
     method: 'post',
     headers: { 'Content-Type': 'application/json' }
   });

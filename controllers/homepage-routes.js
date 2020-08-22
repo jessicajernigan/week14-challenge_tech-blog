@@ -51,7 +51,7 @@ router.get('/Blogpost/:id', (req, res) => {
     },
     attributes: [
       'id',
-      'post_url',
+      'post_content',
       'title',
       'created_at'
     ],
@@ -107,22 +107,5 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-
-// HARDCODED CONTENT FOR TESTING PURPOSES
-// router.get('/Blogpost/:id', (req, res) => {
-//   const Blogpost = {
-//     id: 1,
-//     post_url: 'https://handlebarsjs.com/guide/',
-//     title: 'Handlebars Docs',
-//     created_at: new Date(),
-//     vote_count: 10,
-//     comments: [{}, {}],
-//     user: {
-//       username: 'test_user'
-//     }
-//   };
-
-//   res.render('single-Blogpost', { Blogpost });
-// });
 
 module.exports = router;
