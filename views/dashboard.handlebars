@@ -8,12 +8,14 @@
       </div>
       <div>
         <label for="post-content">Body</label>
-        <textarea id="post-content" name="post-content" class="large-input" rows="4" placeholder="e.g. Let me tell you about..." /></textarea>
+        <textarea id="post-content" name="post-content" class="large-input" rows="4"
+          placeholder="e.g. Let me tell you about..." /></textarea>
       </div>
       <button type="submit" class="btn">Create</button>
     </form>
   </section>
 </div>
+
 
 {{#if posts.length}}
 <section>
@@ -28,6 +30,7 @@
   </ol>
 </section>
 {{/if}}
+
 
 {{!-- Link this file to the template. --}}
 <script src="/javascript/add-post.js"></script>

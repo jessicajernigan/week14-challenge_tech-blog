@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+/* body {
+  background-image: ("./public/assets/images/black_thread_@2X.png");
+  background-repeat: repeat-y;
+} */
+
 body, html {
   height: 100%;
   padding: 0;
@@ -50,6 +55,7 @@ textarea, input {
   margin: 5px 0px 5px;
   border-radius: 10px;
   border: 2px inset #ccc;
+  width: 100%;
 }
 
 textarea:focus, input:focus {
@@ -133,6 +139,13 @@ main {
   flex-wrap: wrap;
 }
 
+.flexcolumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .btn-no-style {
   background: none;
   border: none;
@@ -175,6 +188,25 @@ main {
   margin: -1.5% 0 2% 0;
 }
 
+.comment-container {
+  padding: 15px 30px 15px;
+  margin: 1em;
+  border: 10px solid #248ED3;
+  border-radius: 15px;
+  background-color: rgb(230, 230, 230);
+  min-width: 375px;
+  max-width: 60%;
+}
+
+.edit-container {
+  padding: 15px 30px 15px;
+  margin: 1em;
+  border: 10px solid #248ED3;
+  border-radius: 15px;
+  background-color: rgb(230, 230, 230);
+  min-width: 375px;
+  width: 90%;
+}
 
 .comment-form {
   margin-bottom: 5%;
@@ -209,4 +241,8 @@ footer {
   justify-content: center;
   padding: 1%;
   font-size: 110%;
+}
+
+footer a {
+  margin-left: 2em;
 }

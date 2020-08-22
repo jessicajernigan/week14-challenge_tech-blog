@@ -109,9 +109,11 @@ router.post('/', userAuth, (req, res) => {
 
 // PUT (update) a post title and/or content
 router.put('/:id', userAuth, (req, res) => {
+  console.log('This is req.body: ', req.body)
   Blogpost.update(
     {
-      post_content: req.body.title
+      title: req.body.title,
+      post_content: req.body.post_content
     },
     {
       where: {
