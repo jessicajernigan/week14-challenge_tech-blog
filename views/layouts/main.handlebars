@@ -15,26 +15,27 @@
         <a href="/">Just Tech News</a>
       </h1>
       <nav>
-        {{!-- if helper will go here --}}
+        {{#if loggedIn}}
         <a href="/dashboard">dashboard</a>
         <button id="logout" class="btn-no-style">logout</button>
+        {{else}}
         <a href="/login">login</a>
-        {{!-- if helper will go here --}}
+        {{/if}}
       </nav>
     </header>
     <main>
-      {{!-- body will go here --}}
-      <p>Sample content!</p>
+      {{{ body }}}
     </main>
     <footer>
       Thanks for visiting!
     </footer>
   </div>
 
-{{!-- if helper will go here --}}
+  {{#if loggedIn}}
   <script src="/javascript/logout.js"></script>
-{{!-- if helper will go here --}}
+  {{/if}}
 
 </body>
+
 
 </html>

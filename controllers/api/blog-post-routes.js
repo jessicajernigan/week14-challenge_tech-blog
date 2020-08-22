@@ -1,10 +1,9 @@
 const router = require('express').Router();
-const sequelize = require('../../config/connection');
-const { Blogpost, Blogger } = require('../../models');
-const withAuth = require('../../utils/auth');
+const { Blogpost, Blogger, Comment } = require('../../models');
+const userAuth = require('../../utils/auth'); // Authenticate user session middleware.
 
 
-// GET posts by all users
+// GET all blog posts by all users
 router.get('/', (req, res) => {
   console.log('======================');
   Blogpost.findAll({
@@ -16,10 +15,14 @@ router.get('/', (req, res) => {
       'created_at'
     ],
     include: [
-      // include the Comment model here:
       {
         model: Comment,
-        attributes: ['id', 'comment_text', 'blogpost_id', 'blogger_id', 'created_at'],
+        attributes: [
+          'id',
+          'comment_text',
+          'blogpost_id',
+          'blogger_id',
+          'created_at'],
         include: {
           model: Blogger,
           attributes: ['username']
@@ -39,7 +42,8 @@ router.get('/', (req, res) => {
 });
 
 
-// GET post by id
+
+// GET blog post by id
 router.get('/:id', (req, res) => {
   Blogpost.findOne({
     where: {
@@ -51,25 +55,29 @@ router.get('/:id', (req, res) => {
       'post_content',
       'created_at'
     ],
-    // include: [
-    //   // include the Comment model here:
-    //   {
-    //     model: Comment,
-    //     attributes: ['id', 'comment_text', 'post_id', 'blogger_id', 'created_at'],
-    //     include: {
-    //       model: Blogger,
-    //       attributes: ['username']
-    //     }
-    //   },
-    //   {
-    //     model: Blogger,
-    //     attributes: ['username']
-    //   }
-    // ]
+    include: [
+      {
+        model: Comment,
+        attributes: [
+          'id',
+          'comment_text',
+          'blogpost_id',
+          'blogger_id',
+          'created_at'],
+        include: {
+          model: Blogger,
+          attributes: ['username']
+        }
+      },
+      {
+        model: Blogger,
+        attributes: ['username']
+      }
+    ]
   })
     .then(dbPostData => {
       if (!dbPostData) {
-        res.status(404).json({ message: 'No post found with this id' });
+        res.status(404).json({ message: 'Blog post not found.' });
         return;
       }
       res.json(dbPostData);
@@ -82,12 +90,12 @@ router.get('/:id', (req, res) => {
 
 
 
-// Create a post
-router.post('/', (req, res) => {
+// POST (create) a blog post
+router.post('/', userAuth, (req, res) => {
   Blogpost.create({
     title: req.body.title,
     post_content: req.body.post_content,
-    blogger_id: req.body.blogger_id
+    blogger_id: req.session.blogger_id
   })
     .then((newBlogPost) => res.json(newBlogPost))
     .catch((err) => {
@@ -99,8 +107,8 @@ router.post('/', (req, res) => {
 
 
 
-// Update a post title
-router.put('/:id', (req, res) => {
+// PUT (update) a post title and/or content
+router.put('/:id', userAuth, (req, res) => {
   Blogpost.update(
     {
       title: req.body.title,
@@ -126,8 +134,8 @@ router.put('/:id', (req, res) => {
 });
 
 
-// Delete a post
-router.delete('/:id', (req, res) => {
+// DELETE a blog post
+router.delete('/:id', userAuth, (req, res) => {
   Post.destroy({
     where: {
       id: req.params.id
@@ -135,7 +143,7 @@ router.delete('/:id', (req, res) => {
   })
     .then((blogPostDeleted) => {
       if (!blogPostDeleted) {
-        res.status(404).json({ message: 'No post found with this id' });
+        res.status(404).json({ message: 'Post not found.' });
         return;
       }
       res.json(blogPostDeleted);

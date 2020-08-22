@@ -6,9 +6,9 @@ const bcrypt = require('bcrypt');
 // Create the "Blogger" as an extension of Sequelize's native "Model" object.
 class Blogger extends Model {
   // Set up method to run on instance data (per Blogger) to check password
-  // checkPassword(loginPw) {
-  //   return bcrypt.compareSync(loginPw, this.password);
-  // }
+  checkPassword(loginPw) {
+    return bcrypt.compareSync(loginPw, this.password);
+  }
 }
 
 // Define table columns and configuration. 

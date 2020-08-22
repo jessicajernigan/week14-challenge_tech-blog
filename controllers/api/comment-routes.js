@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const { Comment } = require('../../models');
-const withAuth = require('../../utils/auth');
+const userAuth = require('../../utils/auth'); // Authenticate user session middleware.
 
-
+// GET all comments
 router.get('/', (req, res) => {
   Comment.findAll({
     attributes: [
@@ -19,14 +19,14 @@ router.get('/', (req, res) => {
 });
 
 
-
-router.post('/', (req, res) => {
-  // check the session to verify user is logged in
+// POST (create) a comment
+router.post('/', userAuth, (req, res) => {
+  // Check the session to verify user is logged in
   if (req.session) {
     Comment.create({
       comment_text: req.body.comment_text,
       blogpost_id: req.body.blogpost_id,
-      blogger_id: req.body.blogger_id
+      blogger_id: req.session.blogger_id
     })
       .then((newComment) => res.json(newComment))
       .catch((err) => {
@@ -36,7 +36,9 @@ router.post('/', (req, res) => {
   }
 });
 
-router.delete('/:id', (req, res) => {
+
+// DELETE a comment
+router.delete('/:id', userAuth, (req, res) => {
   Comment.destroy({
     where: {
       id: req.params.id
@@ -54,6 +56,7 @@ router.delete('/:id', (req, res) => {
       res.status(500).json(err);
     });
 });
+
 
 
 module.exports = router;

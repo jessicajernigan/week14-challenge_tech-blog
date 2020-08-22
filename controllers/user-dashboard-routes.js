@@ -1,25 +1,28 @@
 const router = require('express').Router();
-const sequelize = require('../config/connection');
 const { Blogpost, Blogger, Comment } = require('../models');
-const withAuth = require('../utils/auth');
+const userAuth = require('../utils/auth'); // Authenticate user session middleware.
 
-router.get('/', withAuth, (req, res) => {
+router.get('/', userAuth, (req, res) => {
   Blogpost.findAll({
     where: {
       // use the ID from the session
-      user_id: req.session.user_id
+      blogger_id: req.session.blogger_id
     },
     attributes: [
       'id',
-      'post_url',
+      'post_content',
       'title',
-      'created_at',
-      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE Blogpost.id = vote.post_id)'), 'vote_count']
+      'created_at'
     ],
     include: [
       {
         model: Comment,
-        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+        attributes: [
+          'id', 
+          'comment_text', 
+          'blogpost_id', 
+          'blogger_id', 
+          'created_at'],
         include: {
           model: Blogger,
           attributes: ['username']
@@ -47,23 +50,26 @@ router.get('/', withAuth, (req, res) => {
 
 
 
-router.get('/edit/:id', withAuth, (req, res) => {
+router.get('/edit/:id', userAuth, (req, res) => {
   Blogpost.findOne({
     where: {
       id: req.params.id
     },
     attributes: [
       'id',
-      'post_url',
+      'post_content',
       'title',
-      'created_at',
-      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE Blogpost.id = vote.post_id)'), 'vote_count']
+      'created_at'
     ],
     include: [
-      // include the Comment model here:
       {
         model: Comment,
-        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+        attributes: [
+          'id', 
+          'comment_text', 
+          'blogpost_id', 
+          'blogger_id', 
+          'created_at'],
         include: {
           model: Blogger,
           attributes: ['username']
@@ -77,9 +83,9 @@ router.get('/edit/:id', withAuth, (req, res) => {
   })
     .then(dbPostData => {
       // serialize data before passing to template
-      const Blogpost = dbPostData.get({ plain: true });
+      const post = dbPostData.get({ plain: true });
 
-      res.render('edit-Blogpost', {
+      res.render('edit-post', {
         Blogpost,
         loggedIn: true
       })
