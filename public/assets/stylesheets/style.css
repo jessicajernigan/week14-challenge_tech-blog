@@ -2,18 +2,15 @@
   box-sizing: border-box;
 }
 
-/* body {
-  background-image: ("./public/assets/images/black_thread_@2X.png");
-  background-repeat: repeat-y;
-} */
-
 body, html {
   height: 100%;
   padding: 0;
   margin: 0;
   font-family: sans-serif;
-  color: #333;
+  color: rgb(244, 244, 244);
+  background-image: url("../images/black_thread_@2X.png");
 }
+
 
 a {
   text-decoration: none;
@@ -88,6 +85,7 @@ form label {
 
 header {
   border-bottom: 1px solid #ccc;
+  background-color: rgb(72, 72, 72, .50);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -114,7 +112,7 @@ main {
   margin: 1em;
   border: 10px solid #248ED3;
   border-radius: 15px;
-  background-color: lightgray;
+  color: lightgray;
   min-width: 375px;
 }
 
@@ -177,11 +175,11 @@ main {
   line-height: 150%;
 }
 
-.post .title span {
+/* .post .title span {
   font-style: italic;
   font-size: 90%;
   color: #7d7d7d;
-}
+} */
 
 .edit-link {
   display: block;
