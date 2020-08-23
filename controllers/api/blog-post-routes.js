@@ -109,7 +109,6 @@ router.post('/', userAuth, (req, res) => {
 
 // PUT (update) a post title and/or content
 router.put('/:id', userAuth, (req, res) => {
-  console.log('This is req.body: ', req.body)
   Blogpost.update(
     {
       title: req.body.title,
