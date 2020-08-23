@@ -54,13 +54,14 @@ button {
   border: 3px solid;
   border-radius: 10px;
   margin-top: 1em;
-  padding: 15px;
+  padding: 10px;
   color: #3486eb;
   font-weight: bolder;
   font-family: monospace;
   font-size: 18px;
   transition: .1s;
   cursor: pointer;
+  width: 100%
 }
 
 button:hover {
