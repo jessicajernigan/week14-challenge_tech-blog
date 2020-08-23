@@ -215,16 +215,13 @@ ol {
 
 .blogtitle {
   background: var(--lb);
-  padding: 5px;
-  /* margin-block-start: -.25em; */
-  /* margin-block-end: -.5em;  */
+  padding: 2%;
 }
 
 .blogcontent {
   background: var(--translg);
-  padding: 5px;
+  padding: 2%;
   margin-block-start: -1em;
-  /* margin-block-end: -1em; */
 }
 
 .edit-link {
