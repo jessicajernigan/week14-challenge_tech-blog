@@ -24,7 +24,7 @@ header {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 35px;
+  padding: 5px 15px;
   background-image: url("../images/black_thread_@2X.png");
   position: -webkit-sticky;
   position: sticky;
@@ -33,7 +33,9 @@ header {
 }
 
 header h1 {
-  font-size: 2em;
+  font-size: 3em;
+  font-family: monospace;
+  color: var(--lb);
 }
 
 a {
