@@ -1,10 +1,13 @@
-
-  <article class="post">
-    <div class="title">
-      <h3 class="blogtitle">{{title}}</h3>
-      <p class="blogcontent">{{post_content}}</p>
-    </div>
-    <div class="meta">
-      <a href="/blogpost/{{id}}">{{comments.length}} {{format_plural "comment" comments.length}}</a>
-    </div>
-  </article>
+<article class="post">
+  <div class="title">
+    <h3 class="blogtitle">{{title}}</h3>
+    <p class="blogcontent">
+      <i>posted by <span style="font-weight:bolder">{{blogger.username}}</span> on {{format_date created_at}}</i>
+      <br>
+      <br>
+      {{post_content}}</p>
+  </div>
+  <div class="meta">
+    <a href="/blogpost/{{id}}">{{comments.length}} {{format_plural "comment" comments.length}}</a>
+  </div>
+</article>
